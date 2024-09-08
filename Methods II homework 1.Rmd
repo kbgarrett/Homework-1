@@ -1,0 +1,84 @@
+---
+title: "Olga Homework 1 KG"
+output: pdf_document
+date: "2024-08-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#setting working directory
+setwd("C:/User/kelseygarrett/Desktop/method_II/data")
+library(tidyverse)
+#load data
+raw_data<- read.csv('kdrama.csv')
+
+#find the number of kdramas in dataset
+dim(raw_data)
+nrow(raw_data)
+
+#mean of episodes of kdramas
+mean(raw_data$Number.of.Episodes)
+
+#making histogram
+hist(raw_data$Rating)
+
+#how many shows > 9
+table(raw_data$Rating > 9)
+
+#rename variables 
+raw_data %>% 
+  rename(year=Year.of.release)
+
+#how many dataset were released in 2020-2022
+yr_released <- raw_data %>% 
+  select(Name, Year.of.release) %>% 
+  rename(year=Year.of.release)
+
+#type is the variable Duration
+yr_released_cat <- yr_released %>% 
+  mutate(year_cat=case_when(year>= 2020 ~ 'year', TRUE ~'no'))
+
+#Recode variable Duration
+recode()
+
+#filtering 
+Netflixonly<- filter(raw_data, Original.Network =='Netflix')
+```
+
+```{r}
+#find the number of kdramas in dataset
+dim(raw_data)
+nrow(raw_data)
+
+#mean of episodes of kdramas
+mean(raw_data$Number.of.Episodes)
+
+#making histogram
+hist(raw_data$Rating)
+
+#how many shows > 9
+table(raw_data$Rating > 9)
+
+#rename variables 
+raw_data %>% 
+  rename(year=Year.of.release)
+
+#how many dataset were released in 2020-2022
+yr_released <- raw_data %>% 
+  select(Name, Year.of.release) %>% 
+  rename(year=Year.of.release)
+
+#type is the variable Duration
+yr_released_cat <- yr_released %>% 
+  mutate(year_cat=case_when(year>= 2020 ~ 'year', TRUE ~'no'))
+
+#Recode variable Duration
+recode()
+
+#filtering 
+Netflixonly<- filter(raw_data, Original.Network =='Netflix')
+
+#average 
+mean(Netflixonly$Rating)
+```
+
